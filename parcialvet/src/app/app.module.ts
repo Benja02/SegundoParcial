@@ -36,7 +36,7 @@ import { AuthGuard } from "./guard/auth.guard";
     AngularFirestoreModule
   ],
   providers: [AuthGuard], //Agregamos a los providers el guard
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent,DashboardComponent,SignInComponent,SignUpComponent,VerifyEmailComponent,ForgotPasswordComponent]
 })
 export class AppModule { }
 
