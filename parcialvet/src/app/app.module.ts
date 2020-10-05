@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
+import { FormsModule } from '@angular/forms';
+
+import {HttpClientModule} from '@angular/common/http';
+
 //firebase
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -19,6 +23,10 @@ import { VerifyEmailComponent } from './components/verify-email/verify-email.com
 import { AuthService } from "./services/auth.service";
 import { AuthGuard } from "./guard/auth.guard";
 
+// Toastr, para notificaciones en angular
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +41,11 @@ import { AuthGuard } from "./guard/auth.guard";
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.Firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    FormsModule,
+    ToastrModule.forRoot(),
+    BrowserAnimationsModule,
+    HttpClientModule
   ],
   providers: [AuthGuard], //Agregamos a los providers el guard
   bootstrap: [AppComponent,DashboardComponent,SignInComponent,SignUpComponent,VerifyEmailComponent,ForgotPasswordComponent]

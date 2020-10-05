@@ -9,6 +9,12 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthGuard } from "./guard/auth.guard";
 
+
+import { FormsModule } from '@angular/forms';
+
+import {HttpClientModule} from '@angular/common/http';
+
+
 const routes: Routes = [
   { path: '', redirectTo: '/sign-in', pathMatch: 'full' },
   { path: 'sign-in', component: SignInComponent },
@@ -21,7 +27,9 @@ const routes: Routes = [
 
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), HttpClientModule,
+  FormsModule
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
