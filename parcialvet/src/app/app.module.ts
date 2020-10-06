@@ -26,6 +26,10 @@ import { AuthGuard } from "./guard/auth.guard";
 // Toastr, para notificaciones en angular
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { FilterPipe } from './pipes/filter.pipe';
+
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import { ToastrModule } from 'ngx-toastr';
     SignInComponent,
     SignUpComponent,
     ForgotPasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    FilterPipe
     ],
   imports: [
     BrowserModule,
@@ -45,7 +50,9 @@ import { ToastrModule } from 'ngx-toastr';
     FormsModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatTableModule,
+    MatInputModule
   ],
   providers: [AuthGuard], //Agregamos a los providers el guard
   bootstrap: [AppComponent,DashboardComponent,SignInComponent,SignUpComponent,VerifyEmailComponent,ForgotPasswordComponent]

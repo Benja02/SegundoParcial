@@ -56,23 +56,21 @@
 
 <!-- Top navigation -->
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="#">Veterinaria My Pets</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto">
+      <div class="" *ngIf="authService.userData as user">
       <li class="nav-item">
         <a class="nav-link active">
-          <i class="fas fa-user"></i>User Profile
+          <i class="fas fa-user"></i><strong>{{(user.displayName) ? user.displayName : 'User'}}</strong>
         </a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link active">
-          <i class="fas fa-prescription"></i>Student
-        </a>
-      </li> 
+    </div>
+    
       <!-- Calling SignOut() Api from AuthService -->
        <li class="nav-item">
         <a class="nav-link" (click)="authService.SignOut()">
@@ -80,15 +78,48 @@
         </a>
       </li>
     </ul>
-  </div>
+</div>
 </nav> 
 <br><br>
 <div class="container">
-  <h2>CRUD ANGULAR PHP Y MYSQL</h2>
   <div class="card">
   <div class="card-body">
   <div class="container">
-<h2>Datos de Visitas</h2>
+    <h3>Ingresar Visitas</h3>
+    <div class="form-group">
+      <input type="text" [(ngModel)]="campos.NombreCliente" placeholder="Nombre Cliente" class="form-control" required/>
+      </div>
+      <div class="form-group">
+          <input type="text" [(ngModel)]="campos.Dui" placeholder="Dui" class="form-control" required/>
+      </div>
+      <div class="form-group">
+          <input type="text" [(ngModel)]="campos.NombreMascota" placeholder="Nombre Mascota" class="form-control" required/>
+      </div>
+      <div class="form-group">
+        <input type="text" [(ngModel)]="campos.Tratamiento" placeholder="Tratamiento" class="form-control" required/>
+        </div>
+        <div class="form-group">
+          <input type="text" [(ngModel)]="campos.Medicamento" placeholder="Medicamento" class="form-control" required/>
+          </div>
+          <div class="form-group">
+            <input type="number" step="any" [(ngModel)]="campos.Costo" placeholder="Precio" class="form-control" required/>
+            </div>
+      
+      <button (click)="add()" *ngIf="campos.Idvisita == 0" class="btn btn-primary btn-space">Agregar</button>
+      <button (click)="update()" *ngIf="campos.Idvisita !== 0" class="btn btn-warning">Modificar</button>
+      </div>
+    </div>
+  </div>
+<br>
+  <div class="card">
+    <div class="card-body">
+    <div class="container">
+<h3>Datos de Visitas</h3>
+<div class="container">
+  <div class="form-group">
+    <input type="text" class="forms-control" placeholder="Buscar.."  [(ngModel)]="filtercampos" name="filtercampos" />
+  </div>
+</div>
 
 <table class="table table-hover" *ngIf="hayRegistros(); else sinControlVisitas">
 
@@ -101,20 +132,22 @@
 <th>Tratamiento</th>
 <th>Medicamento</th>
 <th>Costo</th>
+<th>Visitas</th>
 <th>Borrar</th>
 <th>Seleccionar</th>
 </tr>
 </thead>
 <tbody>
 
-<tr *ngFor="let campos of Control-Visitas">
+<tr *ngFor="let campos of consulta ">
 <td>{{campos.Idvisita}}</td>
 <td>{{campos.NombreCliente}}</td>
 <td>{{campos.Dui}}</td>
 <td>{{campos.NombreMascota}}</td>
 <td>{{campos.Tratamiento}}</td>
 <td>{{campos.Medicamento}}</td>
-<td>{{campos.Precio}}</td>
+<td>{{campos.Costo}}</td>
+<td>{{campos.visitas}}</td>
 <td><button (click)="delete(campos.Idvisita)" class="btn btn-danger">Borrar</button></td>
 <td><button (click)="seleccionar(campos.Idvisita)" class="btn btn-warning">Seleccionar</button></td>
 </tr>
@@ -126,28 +159,9 @@
 <p>No hay articulos.</p>
 </ng-template>
 
-  <div class="form-group">
-  <input type="text" [(ngModel)]="campos.NombreCliente" placeholder="Nombre Cliente" class="form-control" required/>
-  </div>
-  <div class="form-group">
-      <input type="text" [(ngModel)]="campos.Dui" placeholder="Dui" class="form-control" required/>
-  </div>
-  <div class="form-group">
-      <input type="text" [(ngModel)]="campos.NombreMascota" placeholder="Nombre Mascota" class="form-control" required/>
-  </div>
-  <div class="form-group">
-    <input type="text" [(ngModel)]="campos.Tratamiento" placeholder="Tratamiento" class="form-control" required/>
-    </div>
-    <div class="form-group">
-      <input type="text" [(ngModel)]="campos.Medicamento" placeholder="Medicamento" class="form-control" required/>
-      </div>
-      <div class="form-group">
-        <input type="number" step="any" [(ngModel)]="campos.Precio" placeholder="Precio" class="form-control" required/>
-        </div>
-  
-  <button (click)="add()" *ngIf="campos.Idvisita == 0" class="btn btn-primary btn-space">Agregar</button>
-  <button (click)="update()" *ngIf="campos.Idvisita !== 0" class="btn btn-warning">Modificar</button>
-  </div>
+ 
 </div>
 </div>
 </div>
+</div>
+<br>
